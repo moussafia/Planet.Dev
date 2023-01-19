@@ -1,0 +1,21 @@
+{
+  "name": "style",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./assets/style/src/style.css -o ./assets/style/outputStyle/style.css",
+    "watch": "tailwindcss -i ./assets/style/src/style.css -o ./assets/style/outputStyle/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwind": "^4.0.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "postcss-cli": "^10.1.0"
+  }
+}

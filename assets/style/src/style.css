@@ -6,3 +6,20 @@
 .btn{
     @apply rounded-full py-2 px-3 uppercase text-xs font-bold cursor-pointer tracking-wider
 }
+:root {
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
+.form-field.error input {
+    border-color: var(--error-color);
+}
+
+.form-field.success input {
+    border-color: var(--success-color);
+}
+
+
+.form-field small {
+    color: var(--error-color);
+}
