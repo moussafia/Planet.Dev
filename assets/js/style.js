@@ -37,7 +37,7 @@ const username=document.querySelector('#username');
 const email=document.querySelector('#email');
 const password=document.querySelector('#password');
 const passwordConfirm=document.querySelector('#confirmerpassword');
-const form=document.querySelector('#signUP');
+const form=document.forms['autentification'];
 
 const isEmailValid=(email)=>{
     const regix= /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -74,11 +74,13 @@ const showSuccesMessage=(input)=>{
 
 
 form.addEventListener('submit',(e)=>{
-    e.preventDefault();
     let isUsernameValid=checkUserName(),isEmailValid=checkEmail(),isPasswordValid=checkPassword(),
                         isConfirmPasswordValid=checkConfirmPassword();
     let isformValid=isUsernameValid && isEmailValid && isPasswordValid  &&  isConfirmPasswordValid;
     if(isformValid){
+        return true;
+    }else{
+        e.preventDefault();
     }
 });
 
