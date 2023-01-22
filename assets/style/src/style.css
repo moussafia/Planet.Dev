@@ -8,18 +8,21 @@
 }
 :root {
     --error-color: #dc3545;
-    --success-color: #28a745;
 }
 
 .form-field.error input {
     border-color: var(--error-color);
+    @apply focus:border-red-600 focus:ring-red-600 focus:outline-none focus:ring-1
 }
 
 .form-field.success input {
-    border-color: var(--success-color);
+    @apply focus:border-sky-500 focus:ring-sky-500 focus:outline-none focus:ring-1 border-sky-500
 }
 
 
 .form-field small {
     color: var(--error-color);
+}
+.form-dynamique-border{
+@apply border-t border-slate-300;
 }

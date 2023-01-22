@@ -50,8 +50,6 @@ const isUsernameValid=(name)=>{
 
 }
 const IsRequired=value => value==='' ?   false:  true;
-// const IsBetween=(length,min,max)=>length<min    ||  length>max  ?   false: true;
-
 const isPasswordValid = (password) => {
     const regix = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{3,}$/;
     return regix.test(password);
@@ -159,9 +157,3 @@ form.addEventListener('keyup',(e)=>{
     }
 })
 }
-
-
-
-
-
-

@@ -9,8 +9,8 @@
     <title>DEV Planet</title>
 </head>
 
-<body class="bg-gray-100" id="index">
-    <nav class="bg-mycolor-100">
+<body class="bg-gray-100 h-screen" id="index">
+    <nav class="bg-mycolor-100 ">
         <div class="flex justify-between px-3">
             <div class="w-12">
                 <a href="#" class="hover:cursor-pointer">
@@ -20,8 +20,7 @@
             <div class="flex flex-col items-center">
                 <div id="symbol-menu" class="block sm:hidden pt-4 ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-8 h-6 border border-black rounded hover:cursor-pointer hover:bg-blue-400 
+                        stroke="currentColor" class="w-8 h-6 border border-black rounded hover:cursor-pointer hover:bg-blue-400 
                         hover:text-white transition ease-out duration-500">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -31,7 +30,8 @@
                     <li><a href="#"
                             class="font-semibold text-white hover:text-red-500 transition ease-out duration-500"><span>Homme</span></a>
                     </li>
-                    <li><a href="#" class="font-semibold text-white hover:text-red-500 transition ease-out duration-500"><span>About
+                    <li><a href="#"
+                            class="font-semibold text-white hover:text-red-500 transition ease-out duration-500"><span>About
                                 Us</span></a></li>
                     <li> <a href="#"
                             class="font-semibold text-white hover:text-red-500 transition ease-out duration-500"><span>Contact</span></a>
@@ -43,11 +43,11 @@
     <section class="m-4">
         <div class="flex justify-center sm:justify-end gap-9">
             <div class="">
-                <a href="" class="btn text-primary border-primary md:border-2 hover:bg-primary 
+                <a href="./page/signUP.php" class="btn text-primary border-primary md:border-2 hover:bg-primary 
                 hover:text-white transition ease-out duration-500">signUP</a>
             </div>
             <div>
-                <a href="" class="btn text-primary border-primary md:border-2 hover:bg-primary 
+                <a href="./page/signIN.PHP" class="btn text-primary border-primary md:border-2 hover:bg-primary 
                 hover:text-white transition ease-out duration-500">signIN</a>
             </div>
         </div>
@@ -84,10 +84,12 @@
                         <li class="font-semibold text-sm pb-1">RESSOURCES</li>
                     </a>
                     <a href="#">
-                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Wikepidia</li>
+                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Wikepidia
+                        </li>
                     </a>
                     <a href="#">
-                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">W3schools</li>
+                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">W3schools
+                        </li>
                     </a>
                 </ul>
                 <ul class="text-center">
@@ -95,10 +97,12 @@
                         <li class="font-semibold text-sm pb-1">A PROPOS NOUS</li>
                     </a>
                     <a href="#">
-                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Notre objectifs</li>
+                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Notre
+                            objectifs</li>
                     </a>
                     <a href="#">
-                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Video explecatifs</li>
+                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Video
+                            explecatifs</li>
                     </a>
                 </ul>
                 <ul class="text-center">
@@ -109,7 +113,8 @@
                         <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">Email</li>
                     </a>
                     <a href="#">
-                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">N telephone</li>
+                        <li class="font-semibold text-xs hover:text-red-500 transition ease-out duration-500">N
+                            telephone</li>
                     </a>
                 </ul>
             </div>
