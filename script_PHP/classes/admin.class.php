@@ -28,9 +28,32 @@ class Admin{
     }
     function createAdmin(){
         $db=new Db;
-        $query = 'insert into admin(name,password,email) value(?,?,?)';
-        $req = $db->connectDB()->prepare($query);
-        $result = $req->execute(array($this->name, $this->password, $this->email));
-        return $result;
+        $conn = $db->connectDB();
+        $statement = $conn->query("SELECT COUNT(`email`) FROM `admin` WHERE `email` like '$this->email'");
+        $count = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($count['COUNT(`email`)'] > 0) {
+            $_SESSION['errorSignUP'] = "this email already exist";
+        }else {
+            $req = $conn->prepare('insert into admin(name,password,email) value(?,?,?)');
+            $result = $req->execute(array($this->name, $this->password, $this->email));
+            header('location: signIN.php');
+            $_SESSION['message'] = "votre inscription avec succés";
+            return $result;
+        }
     }  
+    function LogIN(){
+        $db = new Db;
+        $conn=$db->connectDB();
+        $req =$conn ->query( "SELECT * FROM `admin` WHERE `email` like '$this->email' and `password` like '$this->password'");
+        $statment = $req->fetch(PDO::FETCH_ASSOC);
+        if(isset($statment['email'])){
+                $_SESSION['nameAdmin'] = $statment['name'];
+                $_SESSION['idAdmin'] = $statment['id'];
+                header('location: dashboard.php');
+            
+        }else{
+            $_SESSION['errorLOGIN'] = "votre email ou password n'est pas correcte";
+            header('location: signIN.php?error connection');
+        }
+    }
 }

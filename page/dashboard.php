@@ -1,4 +1,10 @@
-<?php include('./navbar/header.php'); ?>
+<?php
+
+include('autolaoder.php');
+include('../script_PHP/script.php');
+
+if (isset($_SESSION['idAdmin'])) {
+    include('./navbar/header.php'); ?>
             <div class="grid grid-cols-3 gap-10 px-11 mt-14">
                 <div class="py-12 bg-white-400 flex flex-col items-center rounded ouverflow-hidden shadow-md border-4">
                     <div>
@@ -87,3 +93,6 @@
 </body>
 
 </html>
+<?php }else{
+    header('location: ../index.php');
+}

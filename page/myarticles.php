@@ -1,4 +1,12 @@
-<?php include('./navbar/header.php'); ?>
+<?php
+
+include('autolaoder.php');
+include('../script_PHP/script.php');
+
+if (isset($_SESSION['idAdmin'])) {
+    include('./navbar/header.php');
+ 
+    ?>
             <div class="mt-14 lg:mt-0" id="myarticle">
                 <div class="flex px-10 justify-between">
                     <button type="button"
@@ -97,7 +105,7 @@
             </div> 
             <!--modal here-->
             <div class="min-w-fit bg-white rounded mx-16 py-4 shadow-md md:px-16 my-14 lg:my-4 transition-opacity ease-in-out" id="modal-popup">
-                <form action="" id="dynamiqueForm">
+                <form action="" id="dynamiqueForm" method="POST">
                     <div class="border-b border-slate-300 mx-4 flex justify-between items-center">
                         <p class="py-4 type-modale font-serif tracking-wider text-2xl bold">
                         </p>
@@ -118,28 +126,32 @@
                                 </svg>
                             </button>
                         </div>
+                        <input type="hidden" id="hideINParticle">
                         <div>
-                            <input type="text" name="" id="" placeholder="Title"
+                            <input type="text" name="TitleArticle[]" id="" placeholder="Title"
                                 class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
-                            <input
+                            <input class="imageArticle" name="imageArticle[]"
                                 class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 id="default_size" type="file">
                         </div>
-                        <div>
-                            <select id="small"
+                        <div class="py-4">
+                            <select id="selectCategory" name="categoryArticle[]"
                                 class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Category</option>
-                                <option value="US">Autre</option>
+                                <?php 
+                                    $ctg=Category ::fetshcategory();
+                                    foreach($ctg as $row){ ?>
+                                <option value="<?php echo $row['id'] ?>"><?php echo $row['category']; ?></option>
+                                <?php } ?>
+                                <option onclick="autrecategory();" id="autreCategory" value="Other">Autre</option>
                             </select>
-                            <div>
-                                <input type="text" name="" id="" placeholder="Category"
-                                    class="hidden w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <div class="countainer-select">
+                
                             </div>
                         </div>
                         <div>
-                            <textarea id="message" rows="4"
+                            <textarea id="marticleINP" name="articleINP[]" rows="4" 
                                 class="block p-2.5 w-full h-screen text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Write your thoughts here..."></textarea>
 
@@ -168,7 +180,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
-                            <button type="submit"
+                            <button type="submit" name="shareArticle"
                                 class="create_Article flex gap-1 focus:outline-none text-white bg-blue-400 hover:bg-blue-600 focus:ring-4 focus:ring-offset-blue-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">
                                 <p class="hidden md:inline">share</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -177,7 +189,7 @@
                                         d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                                 </svg>
                             </button>
-                            <button type="submit"
+                            <button type="submit" name="editArticle"
                                 class="EDit_Article flex gap-1 focus:outline-none text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-offset-blue-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -195,3 +207,6 @@
 </body>
 
 </html>
+<?php }else{
+    header('location: ../index.php');
+}

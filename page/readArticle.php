@@ -1,4 +1,10 @@
-<?php include('./navbar/header.php'); ?>
+<?php
+
+include('autolaoder.php');
+include('../script_PHP/script.php');
+
+if (isset($_SESSION['idAdmin'])) {
+    include('./navbar/header.php'); ?>
             <div class="flex flex-col items-center overflow-x-hidden">
                 <div id="" class="py-8 text-center">
                     <h2 class="font-bold text-4xl font-serif">Lorem ipsum dolor sit amet consectetur.</h2>
@@ -20,3 +26,6 @@
 </body>
 
 </html>
+<?php }else{
+    header('location: ../index.php');
+}

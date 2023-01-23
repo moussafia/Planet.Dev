@@ -17,7 +17,7 @@
                     <div class="px-1">
                         <img src="../assets/image/profil.png" class="w-10 lg:w-16" />
                     </div>
-                    <div class="font-mono tracking-wider pt-1 lg:pt-0 font-semibold">mohammed</div>
+                    <div class="font-mono tracking-wider pt-1 lg:pt-0 font-semibold"><?php echo $_SESSION['nameAdmin']; ?></div>
                 </div>
                 <div class="grid grid-cols-3 px-1 lg:grid-cols-none lg:px-0 gap-2 lg:gap-0">
                     <div class="lg:pl-4 pt-0 lg:pt-16">
