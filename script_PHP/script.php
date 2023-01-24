@@ -35,7 +35,7 @@ function logIN()
 
 function shareArticle()
 {
-
+    $j = 0;
     $title = $_POST['TitleArticle'];
     $image = $_FILES['imageArticle']['name'];
     $tmp_img = $_FILES['imageArticle']['tmp_name'];
@@ -57,7 +57,8 @@ function shareArticle()
             move_uploaded_file($tmp_img[$i], $img_new_path);
             $new_img_name = $image[$i] ? $new_img_name : 'avatarPNG.jpg';
             if ($category[$i] == "other") {
-                $categoryINPhide = $_POST['otherCategory'][$i];
+                $categoryINPhide = $_POST['otherCategory'][$j];
+                $j++;
                 if (!empty($categoryINPhide) && !empty($title[$i]) && !empty($article[$i])) {
                     $ctg->setcategory(trim(stripslashes(htmlspecialchars($categoryINPhide))));
                     $ctg->createCategory();
@@ -107,7 +108,7 @@ function UpdateArticle()
         if ($sizeIMG > 2000000000) {
             $message = "file du taille grande";
             header('location: myarticles.php?error' . $message);
-        } else {
+        } else {die(print_r($title));
             $img_ext = pathinfo($image, PATHINFO_EXTENSION);
             $new_img_name = uniqid("IMG-", true) . '.' . $img_ext;
             $img_new_path = '../assets/imgUploaded/' . $new_img_name;
