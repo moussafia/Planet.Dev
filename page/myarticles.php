@@ -72,20 +72,25 @@ if (isset($_SESSION['idAdmin'])) {
                                 </th>
                             </tr>
                         </thead>
+                        <?php
+                        $idAdmin = $_SESSION['idAdmin'];
+                            $fetsh = Articles ::fetshArticles($idAdmin);
+                            foreach($fetsh as $row){
+                        ?>
                         <tbody>
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Magic Mouse 2
+                                    <?= $row['title'];  ?>
                                 </th>
                                 <td class="px-6 py-4">
-                                    Accessories
+                                <?= $row['category'];  ?>
                                 </td>
                                 <td class="px-6 py-4">
-                                    imge.jpeg
+                                <?= $row['thumbnail'];  ?>
                                 </td>
                                 <td class="px-6 py-4 flex gap-3">
-                                    <button type="button" onclick="remplirForm()"
+                                    <button type="button" onclick="remplirForm(`<?= $row['id'] ?>`,`<?= $row['title'] ?>`,`<?= $row['idCategory'] ?>`,`<?= $row['article'] ?>`)"
                                         class="flex gap-1 focus:outline-none text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-offset-blue-100 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -100,6 +105,7 @@ if (isset($_SESSION['idAdmin'])) {
                                 </td>
                             </tr>
                         </tbody>
+                        <?php } ?>
                     </table>
                 </div>
             </div> 
@@ -126,15 +132,15 @@ if (isset($_SESSION['idAdmin'])) {
                                 </svg>
                             </button>
                         </div>
-                        <input type="hidden" id="hideINParticle">
+                        <input type="hidden" id="hideINParticle" name="hideINParticle">
                         <div>
                             <input type="text" name="TitleArticle[]" placeholder="Title"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="titleInput block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
-                            <input class="imageArticle" name="imageArticle[]" accept="image/png, image/jpeg"
+                            <input name="imageArticle[]" accept="image/png, image/jpeg"
                                 class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="default_size" type="file" required>
+                                id="default_size" type="file">
                         </div>
                         <div class="py-4 countainer-select">
                             <select name="categoryArticle[]" onchange="selectOption(this)"

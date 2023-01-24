@@ -69,28 +69,33 @@ if (isset($_SESSION['idAdmin'])) {
                         </div>
                 </form>
             </div>
-            <a href="readArticle.php">
+            
                 <div id="articles" class="grid grid-cols-1 sm:grid-cols-2 sm:gap-2 lg:grid-cols-4 lg:gap-2.5 px-4 mt-14">
+                <?php
+                            $fetsh = Articles ::fetshArticles();
+                foreach ($fetsh as $row) {
+                    $idArticle = $row['id'];
+                        ?>
+                    <a href="readArticle.php?article=<?=$idArticle ?>">
                     <div class="max-w-sm rounded overflow-hidden shadow-lg cursor-pointer hover:bg-slate-200 mb-5">
-                        <img class="w-full" src="../assets/image/signinup.jpg" alt="Sunset in the mountains">
+                        <img class="w-full" src="../assets/imgUploaded/<?= $row['thumbnail'] ?>" alt="Sunset in the mountains">
                         <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                            <div class="font-bold text-xl mb-2"><?= $row['title'];  ?></div>
                             <p class="text-gray-700 text-base">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores
-                                et perferendis eaque, exercitationem praesentium nihil.
+                                <?= displayCutString($row['article']) ?>
                             </p>
                         </div>
                         <div class="px-6 pt-4 pb-2">
                             <span
                                 class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                created by moussafia</span>
+                                <?= $row['name'] ?></span>
                                 <span
                                 class="inline-block text-center bg-gray-200 rounded-full px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Read
                                 more ...</span>
                         </div>
-                    </div>
+                    </div></a>
+                    <?php } ?>
                 </div>
-            </a>
         </div>
     </div>
 </body>

@@ -8,9 +8,10 @@ form.children[1].children[0].classList.add('hidden');
 const select = document.querySelector(".selectCategory");
 
 ADDformDynamic.onclick=()=>{
-    newINPfiled.appendChild(inputdynamic.cloneNode(true));
+    newINPfiled.appendChild(inputdynamic.cloneNode(true)); 
     form.children[2].lastChild.children[0].classList.remove('hidden');
    form.children[2].lastChild.children[4].children[1].remove();
+   console.log(form.children[2].lastChild.children[0])
 }
 
 function removeForm(item){
@@ -50,13 +51,20 @@ cancelModal.onclick=()=>{
     newINPfiled.innerHTML="";
 
 }
-function remplirForm(arg){
+function remplirForm(idhide,title,select,text){
     myarticle.style.display='none';
     modalpopUp.style.display='block';
     ADDformDynamic.classList.add('hidden');
     typeModale.innerHTML='EDIT Article';
     EDit_Article.classList.remove('hidden')
     create_Article.classList.add('hidden');
+    
+    document.getElementById('hideINParticle').value=idhide;
+    document.querySelector('.titleInput').value=title;
+    document.querySelector('textarea').value=text;
+    document.querySelector('.selectCategory').value=select;
+
+
 }
 
 const container = document.querySelector(".countainer-select");
@@ -72,3 +80,6 @@ function selectOption(arg) {
   } else {
        arg.parentElement.children[1].remove();
 }};
+
+
+//read articles
