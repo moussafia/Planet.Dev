@@ -21,8 +21,9 @@ class Category{
         if (isset($row['category'])) {
             $_SESSION['idcategory'] = $row['id'];
         }else {
-            $req = $conn->prepare("insert into category(`category`) value('?')");
-            $result = $req->execute($this->category);
+            $req = $conn->prepare("insert into category(`category`) value(?)");
+            $result = $req->execute(array($this->category));
+            $_SESSION['idcategory'] = $conn->lastInsertId();
             return $result;
         }
     }

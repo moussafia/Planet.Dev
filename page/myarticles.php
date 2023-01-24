@@ -105,7 +105,7 @@ if (isset($_SESSION['idAdmin'])) {
             </div> 
             <!--modal here-->
             <div class="min-w-fit bg-white rounded mx-16 py-4 shadow-md md:px-16 my-14 lg:my-4 transition-opacity ease-in-out" id="modal-popup">
-                <form action="" id="dynamiqueForm" method="POST">
+                <form action="" id="dynamiqueForm" method="POST" enctype="multipart/form-data">
                     <div class="border-b border-slate-300 mx-4 flex justify-between items-center">
                         <p class="py-4 type-modale font-serif tracking-wider text-2xl bold">
                         </p>
@@ -128,30 +128,27 @@ if (isset($_SESSION['idAdmin'])) {
                         </div>
                         <input type="hidden" id="hideINParticle">
                         <div>
-                            <input type="text" name="TitleArticle[]" id="" placeholder="Title"
+                            <input type="text" name="TitleArticle[]" placeholder="Title"
                                 class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
-                            <input class="imageArticle" name="imageArticle[]"
+                            <input class="imageArticle" name="imageArticle[]" accept="image/png, image/jpeg"
                                 class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="default_size" type="file">
+                                id="default_size" type="file" required>
                         </div>
-                        <div class="py-4">
-                            <select id="selectCategory" name="categoryArticle[]"
-                                class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="py-4 countainer-select">
+                            <select name="categoryArticle[]" onchange="selectOption(this)"
+                                class="selectCategory block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <?php 
                                     $ctg=Category ::fetshcategory();
                                     foreach($ctg as $row){ ?>
                                 <option value="<?php echo $row['id'] ?>"><?php echo $row['category']; ?></option>
                                 <?php } ?>
-                                <option onclick="autrecategory();" id="autreCategory" value="Other">Autre</option>
+                                <option  value="other">Autre</option>
                             </select>
-                            <div class="countainer-select">
-                
-                            </div>
                         </div>
                         <div>
-                            <textarea id="marticleINP" name="articleINP[]" rows="4" 
+                            <textarea name="articleINP[]" rows="4" 
                                 class="block p-2.5 w-full h-screen text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Write your thoughts here..."></textarea>
 

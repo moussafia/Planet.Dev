@@ -28,7 +28,12 @@ class Articles{
     }
 
     function createArticles($category){
-        $category = new Category;
+        $db = new DB;
+        $conn = $db->connectDB();
+        $idAdm=$_SESSION['idAdmin'];
+        $req = $conn->prepare("INSERT INTO `articles`(`title`, `article`, `thumbnail`, `idCategory`, `idAdmin`) VALUES (?,?,?,?,?)");
+        $result = $req->execute(array($this->title, $this->article, $this->thumbnail, $category, $idAdm));
+        return $result;
         
     }
 

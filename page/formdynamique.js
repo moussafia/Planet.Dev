@@ -5,12 +5,12 @@ const removeFormdynamique=document.querySelector('.remove-formdynamique');
 let form=document.getElementById('dynamiqueForm');
 let btnRemoveform=document.querySelector('.btn-remove-form');
 form.children[1].children[0].classList.add('hidden');
+const select = document.querySelector(".selectCategory");
 
 ADDformDynamic.onclick=()=>{
     newINPfiled.appendChild(inputdynamic.cloneNode(true));
     form.children[2].lastChild.children[0].classList.remove('hidden');
-    console.log(form.children[2].lastChild.children[0].classList)
-
+   form.children[2].lastChild.children[4].children[1].remove();
 }
 
 function removeForm(item){
@@ -36,10 +36,6 @@ openModalADD.onclick=()=>{
     create_Article.classList.remove('hidden');
     EDit_Article.classList.add('hidden');
     ADDformDynamic.classList.remove('hidden');
-    const inputs=newINPfiled.getElementsByTagName('input');
-    inputs.form.forEach(input => {
-        input.value = "";
-    });
 
 }
 
@@ -63,20 +59,16 @@ function remplirForm(arg){
     create_Article.classList.add('hidden');
 }
 
-const select = document.getElementById("selectCategory");
 const container = document.querySelector(".countainer-select");
 
-select.addEventListener("change", function() {
-  if (this.value === "Other") {
+function selectOption(arg) {
+  if (arg.value === "other") {
     const input = document.createElement("input");
     input.type = "text";
-    input.name="otherCategory"
+    input.name="otherCategory[]";
     input.classList.add("inputHide");
     input.placeholder = "Enter other category";
-    container.appendChild(input);
+    arg.parentElement.appendChild(input);
   } else {
-    let inputs=container.querySelectorAll("input");
-    inputs.forEach(input => {
-        container.removeChild(input);
-    });
-}});
+       arg.parentElement.children[1].remove();
+}};

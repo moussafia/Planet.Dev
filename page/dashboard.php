@@ -82,7 +82,10 @@ if (isset($_SESSION['idAdmin'])) {
                         </div>
                         <div class="px-6 pt-4 pb-2">
                             <span
-                                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Read
+                                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                created by moussafia</span>
+                                <span
+                                class="inline-block text-center bg-gray-200 rounded-full px-2 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Read
                                 more ...</span>
                         </div>
                     </div>
