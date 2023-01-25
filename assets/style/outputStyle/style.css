@@ -663,6 +663,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -713,6 +717,10 @@ video {
 
 .h-40 {
   height: 10rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .max-h-fit {

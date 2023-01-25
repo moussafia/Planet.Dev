@@ -84,3 +84,58 @@ function selectOption(arg) {
 function remplirINPhideDELETE(idhide){
     document.getElementById('inptDELETE').value=idhide;
 }
+
+     
+       function filtrerType() {
+            var filtre, table, cellule, i, text;
+            filtre = document.getElementById("type").value;
+            table = document.getElementsByName('tbMY');
+            let max = 0;
+            for (i = 0; i < table.length; i++) {
+                cellule = table[i].getElementsByClassName("articleType")[0];
+                let ordre = cellule.value;
+                if (max < ordre) {
+                    max = ordre;
+                }
+            }
+            let min = max;
+            for (i = 0; i < table.length; i++) {
+                cellule = table[i].getElementsByClassName("articleType")[0];
+                let ordre = cellule.value;
+                if (min > ordre) {
+                    min = ordre;
+                }
+            }
+            for (i = 0; i < table.length; i++) {
+                cellule = table[i].getElementsByClassName("articleType")[0];
+                table[i].classList.remove("hidden");
+            }
+            for (i = 0; i < table.length; i++) {
+                cellule = table[i].getElementsByClassName("articleType")[0];
+                let ordre = cellule.value;
+                if (filtre == 1 && ordre != max) {
+                    table[i].classList.add("hidden");
+                }
+                if (filtre == 2 && ordre != min) {
+                    table[i].classList.add("hidden");
+                }
+            }
+        }
+
+        function search() {
+            var filtre, ligne, cellule, i, text;
+            filtre = document.getElementById("rechercheDasgboard").value.toUpperCase();
+            ligne = document.getElementsByName("tbMY");
+            for (i = 0; i < ligne.length; i++) {
+                cellule = ligne[i].getElementsByClassName("titleMYarticle")[0];
+                if (cellule) {
+                    text = cellule.innerText;
+                    if (text.toUpperCase().indexOf(filtre) > -1) {
+                        ligne[i].style.display = "";
+                    } else {
+                        ligne[i].style.display = "none";
+                    }
+                }
+            }
+        }
+   
