@@ -57,18 +57,47 @@ class Articles{
         $req = $conn->query('SELECT articles.id, articles.title, articles.article, articles.thumbnail, category.category, admin.name FROM `articles` Inner join category ON articles.idCategory = category.id INNER JOIN admin ON articles.idAdmin = admin.id WHERE articles.id=' . $var);
         return $req;
     }
-    public function updateArticle($category,$image=null){
-        
+    public function updateArticle($category, $image=null){
         $db = new DB;
         $conn = $db->connectDB();
-        if(!isset($image)){
+        if(isset($image)){
             $req = $conn->prepare("UPDATE `articles` SET `title`=?,`article`=?,`thumbnail`=?,`idCategory`=? WHERE articles.id=?");
             $resultat = $req->execute(array($this->title,$this->article,$this->thumbnail,$category,$this->id));
             return $resultat;
+
         }else{
             $req = $conn->prepare("UPDATE `articles` SET `title`=?,`article`=?,`idCategory`=? WHERE articles.id=?");
             $resultat = $req->execute(array($this->title,$this->article,$category,$this->id));
             return $resultat;
         }
     }
+    public function deleteArticles(){
+            $db = new Db();
+            $conn = $db->connectDB();
+            $req = $conn->prepare("DELETE FROM `articles` WHERE articles.id=?");
+            $resultat = $req->execute(array($this->id));
+            return $resultat;
+    }
+    static public function deleteAllARTs(){
+        $db = new Db();
+        $conn = $db->connectDB();
+        $req = $conn->prepare("DELETE FROM `articles`");
+        $resultat = $req->execute();
+        return $resultat;
+    }
+    static public function nbrEcrivain(){
+        $db = new Db();
+        $conn = $db->connectDB();
+        $req = $conn->query("SELECT COUNT(DISTINCT idAdmin) FROM articles");
+        $count = $req->fetchColumn();
+        return $count;
+    }
+    static public function nbrArticles(){
+        $db = new Db();
+        $conn = $db->connectDB();
+        $req = $conn->query("SELECT COUNT(*) FROM articles");
+        $count = $req->fetchColumn();
+        return $count;
+    }
+
 }

@@ -9,7 +9,12 @@ if (isset($_POST['shareArticle']))
     shareArticle();
 if (isset($_POST['editArticle']))
     UpdateArticle();
-
+if (isset($_POST['delteArticle']))
+    deleteArticle();
+if (isset($_POST['deleteALL']))
+    deleteAllArticle();
+if (isset($_POST['logOUT']))
+    sortirAdmin();
 function createAdmin()
 {
     $admin = new Admin;
@@ -32,7 +37,11 @@ function logIN()
     $admin->LogIN();
 }
 
-
+function sortirAdmin(){
+    $sortir = new Admin();
+    $sortir->logOUT();
+    header('location: ../index.php');
+}
 function shareArticle()
 {
     $j = 0;
@@ -100,45 +109,45 @@ function UpdateArticle()
     $sizeIMG = $_FILES['imageArticle']['size'][0];
     $category = $_POST['categoryArticle'][0];
     $article = $_POST['articleINP'][0];
-    $idArticle = $_POST['hideINParticle'][0];
+    $idArticle = $_POST['hideINParticle'];
     $ctg = new Category();
     $ART = new Articles();
     $ART->setID($idArticle);
-    if (!empty($image)) { $var = 1;
-        if ($sizeIMG > 2000000000) {
+    if (!empty($image)) { $var = 1; 
+        if ($sizeIMG > 20000000) {
             $message = "file du taille grande";
             header('location: myarticles.php?error' . $message);
-        } else {die(print_r($title));
+        } else {
             $img_ext = pathinfo($image, PATHINFO_EXTENSION);
             $new_img_name = uniqid("IMG-", true) . '.' . $img_ext;
             $img_new_path = '../assets/imgUploaded/' . $new_img_name;
             move_uploaded_file($tmp_img, $img_new_path);
             $new_img_name = $image ? $new_img_name : 'avatarPNG.jpg';
             if ($category == "other") {
-                $categoryINPhide = $_POST['otherCategory'];
+                $categoryINPhide = $_POST['otherCategory'][0];
                 if (!empty($categoryINPhide) && !empty($title) && !empty($article)) {
                     $ctg->setcategory(trim(stripslashes(htmlspecialchars($categoryINPhide))));
                     $ctg->createCategory();
                     $category = $_SESSION['idcategory'];
                     $ART->setTitle(trim(stripslashes(htmlspecialchars($title))));
-                    $ART->setThumbnail(trim(stripslashes(htmlspecialchars($new_img_name))));
+                    $ART->setThumbnail($new_img_name);
                     $ART->setArticle(trim(stripslashes(htmlspecialchars($article))));
                     $ART->updateArticle(trim(stripslashes(htmlspecialchars($category))),$var);
                 }
             } else {
                 if (!empty($category) && !empty($title) && !empty($article)) {
                     $ART->setTitle(trim(stripslashes(htmlspecialchars($title))));
-                    $ART->setThumbnail(trim(stripslashes(htmlspecialchars($new_img_name))));
+                    $ART->setThumbnail($new_img_name);
                     $ART->setArticle(trim(stripslashes(htmlspecialchars($article))));
                     $ART->updateArticle(trim(stripslashes(htmlspecialchars($category))),$var);
                 }
             }
         }
-    }else{
+    } else {
         if ($category == "other") {
-            $categoryINPhide = $_POST['otherCategory'];
+            $categoryINPhide = $_POST['otherCategory'][0];
             if (!empty($categoryINPhide) && !empty($title) && !empty($article)) {
-                $ctg->setcategory(trim(stripslashes(htmlspecialchars($categoryINPhide))));
+                $ctg->setcategory(trim(stripslashes(htmlspecialchars($categoryINPhide[0]))));
                 $ctg->createCategory();
                 $category = $_SESSION['idcategory'];
                 $ART->setTitle(trim(stripslashes(htmlspecialchars($title))));
@@ -154,4 +163,20 @@ function UpdateArticle()
         }
     }
 
+}
+
+function deleteArticle(){
+    $art = new Articles();
+    $var = $_POST['inptDELETE'];
+    $art->setID($var);
+    $art->deleteArticles();
+}
+
+function deleteAllArticle(){
+    $art = Articles::deleteAllARTs();
+}
+
+function nombreUtilisateur(){
+    $nbr = Admin::nbrUtilisateur();
+    echo $nbr;
 }

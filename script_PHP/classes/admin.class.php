@@ -32,12 +32,11 @@ class Admin{
         $statement = $conn->query("SELECT COUNT(`email`) FROM `admin` WHERE `email` like '$this->email'");
         $count = $statement->fetch(PDO::FETCH_ASSOC);
         if ($count['COUNT(`email`)'] > 0) {
-            $_SESSION['errorSignUP'] = "this email already exist";
+            header("location : signUP.php?this email already exist");
         }else {
             $req = $conn->prepare('insert into admin(name,password,email) value(?,?,?)');
             $result = $req->execute(array($this->name, $this->password, $this->email));
             header('location: signIN.php');
-            $_SESSION['message'] = "votre inscription avec succés";
             return $result;
         }
     }  
@@ -52,8 +51,18 @@ class Admin{
                 header('location: dashboard.php');
             
         }else{
-            $_SESSION['errorLOGIN'] = "votre email ou password n'est pas correcte";
             header('location: signIN.php?error connection');
         }
     }
+ public function logOUT(){
+        session_unset();
+        session_destroy();
+    }
+static public function nbrUtilisateur(){
+    $db=new Db;
+    $conn = $db->connectDB();
+    $statement = $conn->query("SELECT COUNT(*) FROM `admin`");
+    $count = $statement->fetch(PDO::FETCH_ASSOC);
+        return $count['COUNT(*)'];
+}
 }

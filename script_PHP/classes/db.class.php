@@ -16,4 +16,3 @@ class Db{
           }
     }
 }
-//static with this?

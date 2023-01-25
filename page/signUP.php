@@ -1,6 +1,6 @@
 <?php
-
- ?>
+include('autolaoder.php');
+include('../script_PHP/script.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 

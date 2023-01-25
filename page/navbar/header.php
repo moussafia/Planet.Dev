@@ -56,7 +56,9 @@
                                         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                 </svg>
                             </div>
-                            <div class="hidden lg:block">Log OUT</div>
+                            <form method="post">
+                            <div class="hidden lg:block"><button type="submit" name="logOUT">Log OUT</button></div>
+                            </form>
                         </a>
                     </div>
                 </div>

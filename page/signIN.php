@@ -52,7 +52,6 @@ include('../script_PHP/script.php'); ?>
             </div>
         </div>  
     </div>
-    <script></script>
 </body>
 
 </html>

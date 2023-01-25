@@ -15,7 +15,10 @@ if (isset($_SESSION['idAdmin'])) {
                         </svg>
                     </div>
                     <div class="hidden lg:block">nombre des articles</div>
-                    <p class="text-slate-500 pt-1 ">15</p>
+                    <p class="text-slate-500 pt-1 "><?php
+                    $nbreArticles = Articles::nbrArticles();
+                    echo $nbreArticles;
+                    ?></p>
                 </div>
                 <div class="py-12 bg-white-400 flex flex-col items-center rounded ouverflow-hidden shadow-md border-4">
                     <div>
@@ -26,7 +29,7 @@ if (isset($_SESSION['idAdmin'])) {
                         </svg>
                     </div>
                     <div class="hidden lg:block">nombre des utilisateurs</div>
-                    <p class="text-slate-500 pt-1 ">15</p>
+                    <p class="text-slate-500 pt-1 "><?php nombreUtilisateur(); ?></p>
                 </div>
                 <div class="py-12 bg-white-400 flex flex-col items-center rounded ouverflow-hidden shadow-md border-4">
                     <div>
@@ -37,7 +40,10 @@ if (isset($_SESSION['idAdmin'])) {
                         </svg>
                     </div>
                     <div class="hidden lg:block">nombre des écrivains</div>
-                    <p class="text-slate-500 pt-1 ">15</p>
+                    <p class="text-slate-500 pt-1 "><?php
+                    $nbreEcrivain = Articles::nbrEcrivain();
+                    echo $nbreEcrivain;
+                    ?></p>
                 </div>
             </div>
             <div class="px-4 mt-20">
@@ -46,7 +52,7 @@ if (isset($_SESSION['idAdmin'])) {
                             <div class="lg:col-span-2 input-group relative flex items-stretch w-full lg:w-96 mb-4 gap-1">
                                 <input type="search"
                                     class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                    placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                    placeholder="&#128270; Search" aria-label="Search" aria-describedby="button-addon2">
                                 <button
                                     class="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
                                     type="button" id="button-addon2">
@@ -78,7 +84,7 @@ if (isset($_SESSION['idAdmin'])) {
                         ?>
                     <a href="readArticle.php?article=<?=$idArticle ?>">
                     <div class="max-w-sm rounded overflow-hidden shadow-lg cursor-pointer hover:bg-slate-200 mb-5">
-                        <img class="w-full" src="../assets/imgUploaded/<?= $row['thumbnail'] ?>" alt="Sunset in the mountains">
+                        <img class="w-full object-cover" src="../assets/imgUploaded/<?= $row['thumbnail'] ?>" alt="Sunset in the mountains">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2"><?= $row['title'];  ?></div>
                             <p class="text-gray-700 text-base">

@@ -11,7 +11,6 @@ ADDformDynamic.onclick=()=>{
     newINPfiled.appendChild(inputdynamic.cloneNode(true)); 
     form.children[2].lastChild.children[0].classList.remove('hidden');
    form.children[2].lastChild.children[4].children[1].remove();
-   console.log(form.children[2].lastChild.children[0])
 }
 
 function removeForm(item){
@@ -58,7 +57,7 @@ function remplirForm(idhide,title,select,text){
     typeModale.innerHTML='EDIT Article';
     EDit_Article.classList.remove('hidden')
     create_Article.classList.add('hidden');
-    
+
     document.getElementById('hideINParticle').value=idhide;
     document.querySelector('.titleInput').value=title;
     document.querySelector('textarea').value=text;
@@ -82,4 +81,6 @@ function selectOption(arg) {
 }};
 
 
-//read articles
+function remplirINPhideDELETE(idhide){
+    document.getElementById('inptDELETE').value=idhide;
+}
